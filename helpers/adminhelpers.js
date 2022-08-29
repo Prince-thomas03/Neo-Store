@@ -408,7 +408,7 @@ module.exports = {
 
   postEditBanner: (details, bannerId, images) => {
 
-   
+    console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 
     return new Promise((resolve, reject) => {
 
@@ -610,14 +610,14 @@ module.exports = {
   // },
 
 
-onlinePaymentCount: () => {
+  onlinePaymentCount: () => {
     return new Promise(async (resolve, reject) => {
       try {
         let count = await db.get().collection(collection.orderCollection).find({ PaymentMethod: "Razorpay" }).count()
         resolve(count)
-console.log("this is on;ine payment count");
+        console.log("this is on;ine payment count");
 
-console.log(count);
+        console.log(count);
 
       } catch (err) {
         reject(err)
@@ -631,9 +631,9 @@ console.log(count);
       try {
         let count = await db.get().collection(collection.userCollections).find().count()
         resolve(count)
-console.log("this is tottal users count");
+        console.log("this is tottal users count");
 
-console.log(count);
+        console.log(count);
 
       } catch (err) {
         reject(err)
@@ -645,8 +645,8 @@ console.log(count);
       try {
         let count = await db.get().collection(collection.orderCollection).find().count()
         resolve(count)
-console.log("this is total orders count");
-console.log(count);
+        console.log("this is total orders count");
+        console.log(count);
 
       } catch (err) {
         reject(err)
@@ -664,15 +664,15 @@ console.log(count);
             }
           },
 
-      {
+          {
             $count: 'number'
           }
 
         ]).toArray()
         resolve(count)
 
-console.log("this is total cancel orders");
-console.log(count);
+        console.log("this is total cancel orders");
+        console.log(count);
 
       } catch (err) {
         reject(err)
@@ -687,7 +687,7 @@ console.log(count);
         resolve(count)
 
         console.log("this is total totalCOD");
-console.log(count);
+        console.log(count);
 
       } catch (err) {
         reject(err)
@@ -755,6 +755,35 @@ console.log(count);
       }
     })
   },
+
+  viewAllOrders: () => {
+
+    db.get().collection(collection.orderCollection).find().toArray().then((response) => {
+
+      if (response) {
+
+        resolve(response)
+      } else {
+
+        resolve(false)
+
+      }
+
+
+    })
+
+  },
+
+  AllOrders: () => {
+
+    return new Promise(async (resolve, reject) => {
+
+      let allOrders = await db.get().collection(collection.orderCollection).find().toArray()
+
+      resolve(allOrders)
+
+    })
+  }
 
 
 }

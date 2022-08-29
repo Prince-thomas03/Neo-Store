@@ -10,8 +10,7 @@
             <div class="col-lg-4 pb-5">
                 <!-- Account Sidebar-->
                 <div class="author-card pb-3 border border-secondary">
-                    <div class="author-card-cover"
-                        style="background-image: url(/multerImage/{{user.image.[1]}});">
+                    <div class="author-card-cover" style="background-image: url(/multerImage/{{user.image.[1]}});">
                         <a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title=""
                             data-original-title="You currently have 290 Reward points to spend">
                     </div>
@@ -33,7 +32,7 @@
                                 </div><span class="badge badge-secondary">{{orderCount}}</span>
                             </div> --}}
                         </a><a class="list-group-item active" href="#"><i class="fe-icon-user text-muted"></i>Profile
-                            Settings</a><a class="list-group-item" href="#"><i
+                            Settings</a><a class="list-group-item" href="/viewaddress"><i
                                 class="fe-icon-map-pin text-muted"></i>Addresses</a>
                         {{!-- <a class="list-group-item"
                             href="https://www.bootdey.com/snippets/view/bs4-wishlist-profile-page" target="__blank">
@@ -60,8 +59,8 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-fn">Full Name</label>
-                            <input class="form-control" name="name" type="text" id="account-fn" value="{{user.name}}"
-                                required="">
+                            <input class="form-control"  name="name" type="text" id="account-fn"
+                                value="{{user.name}}" required="" disabled required="">
                         </div>
                     </div>
                     {{!-- <div class="col-md-6">
@@ -73,39 +72,40 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-email">E-mail Address</label>
-                            <input class="form-control" name="email" type="email" id="account-email"
-                                value="{{user.email}}">
+                            <input class="form-control" name="email" type="email" id="account-email " disabled
+                                value="{{user.email}}" required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-phone">Phone Number</label>
                             <input class="form-control" name="mobile" type="text" id="account-phone"
-                                value="{{user.mobile}}" required="">
+                                value="{{user.mobile}}" disabled required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-pass">New Password</label>
-                            <input class="form-control" name="password" type="password" id="account-pass">
+                            <input class="form-control" name="password" type="password" id="account-pass" disabled required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-confirm-pass">Confirm Password</label>
-                            <input class="form-control" name="c_password" type="password" id="account-confirm-pass">
+                            <input class="form-control" name="c_password" type="password" id="account-confirm-pass"
+                                disabled required="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-confirm-pass">Image</label>
-                            <input class="form-control" type="file" name="image" id="account-confirm-pass">
+                            <input class="form-control" type="file" name="image" id="img1" disabled required="">
                         </div>
                     </div>
-                      <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-confirm-pass">Image Gif</label>
-                            <input class="form-control" type="file" name="image" id="account-confirm-pass">
+                            <input class="form-control" type="file" name="image" id="img2" disabled required="">
                         </div>
                     </div>
                     <div class="col-12">
@@ -116,10 +116,18 @@
                                 <label class="custom-control-label" for="subscribe_me">Subscribe me to
                                     Newsletter</label>
                             </div> --}}
-                            <button class="btn btn-style-1 btn-primary" type="submit" data-toast=""
+
+
+                            <button disabled class="btn btn-style-1 btn-primary" id="update" type="submit" data-toast=""
                                 data-toast-position="topRight" data-toast-type="success"
                                 data-toast-icon="fe-icon-check-circle" data-toast-title="Success!"
                                 data-toast-message="Your profile updated successfuly.">Update Profile</button>
+                            <a href="javascript:toggleFormElements(false); " class="btn btn-primary"
+                                onclick="toggleFormElements(true)">Edit
+                            </a>
+                            {{!-- <a href="javascript:toggleFormElements(true);"
+                                onclick="toggleFormElements(false)">disable
+                                all</a> --}}
                         </div>
                     </div>
                 </form>
@@ -127,3 +135,24 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    /* code from qodo.co.uk */
+    function toggleFormElements(bDisabled, thiss) {
+
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = bDisabled;
+        }
+        var inputs = document.getElementsByTagName("button");
+        console.log(inputs)
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = bDisabled;
+        }
+    }
+
+  
+
+
+</script>

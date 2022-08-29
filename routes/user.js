@@ -68,7 +68,10 @@ router.get('/showproducts',verifyLogin,usercontroller.showProducts)
 
 // //Add to cart
 
-router.get('/addToCart/:id',usercontroller.addToCart)
+router.get('/addToCart/:id',verifyLogin,usercontroller.addToCart)
+
+router.get('/addToCart',usercontroller.addcart)
+router.get('/wishlist',usercontroller.wishlist)
 
 
 //product details
@@ -136,7 +139,7 @@ router.get('/getwishlist',verifyLogin,usercontroller.getWishList)
 
 //removeFromWishList
 
-router.post('/removeFromWishList',usercontroller.removeFromWishList)
+router.post('/removeFromWishList',verifyLogin,usercontroller.removeFromWishList)
 
 //Error Page
 
@@ -176,9 +179,13 @@ router.get('/viewaddress',verifyLogin,usercontroller.viewaddress)
 
 //Edit Address
 
-router.get('/editaddress',verifyLogin,usercontroller.editAddress)
+router.get('/geteditaddress/:id',verifyLogin,usercontroller.geteditAddress)
 
+//update addrress
+router.post('/updateAddress',usercontroller.updateAddress)
 
+//delete address
+router.get('/deleteaddress/:id',usercontroller.deleteAddress)
 
 
 module.exports = router;

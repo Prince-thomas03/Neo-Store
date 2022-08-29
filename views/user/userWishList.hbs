@@ -59,123 +59,117 @@
                 {{/each}}
             </div>
 
-            <!-- Load more -->
-            <div class="flex-c-m flex-w w-full p-t-45">
-                <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                    Load More
-                </a>
-            </div>
+
+
+
+
+
+
+            {{!--
+            <!-- Back to top -->
+            <div class="btn-back-to-top" id="myBtn">
+                <span class="symbol-btn-back-to-top">
+                    <i class="zmdi zmdi-chevron-up"></i>
+                </span>
+            </div> --}}
+
         </div>
-    </div>
+        {{else}}
+        <div class="container mt-5 pt-5">
+            <center class="mt-5 pt-5">
+
+                <img src="https://img.freepik.com/free-vector/empty-concept-illustration_114360-1188.jpg?w=740&t=st=1660565499~exp=1660566099~hmac=22a7d3716ed550bad50fe4d25b05e9278e219ced664d9633d89efbfc9569e35b"
+                    alt="" style="width:300px"><br>
+
+                <h5 style="color: green;"> WISHLIST IS EMPTY</h5>
+
+                <a class="btn btn-succes" href="/showproducts"
+                    style="margin-top: 17px; color: green; border: solid green;">SHOP
+                    NOW
+                </a>
+            </center>
+        </div>
+        {{/if}}
+
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+
+
+            function addToCart(proId) {
+
+                alert(proId)
+
+                $.ajax({
+                    url: '/addToCart/' + proId,
+                    method: 'get',
+                    success: (response) => {
+
+                        if (response.status) {
+
+                            let count = $('#cartCount').html()
+                            Swal.fire(
+                                'Added to cart!',
+
+                            )
+
+                            count = parseInt(count) + 1
+                            $('#cartCount').load(location.href + " #cartCount")
+
+                        }
 
 
 
 
+                    }
 
-    {{!--
-    <!-- Back to top -->
-    <div class="btn-back-to-top" id="myBtn">
-        <span class="symbol-btn-back-to-top">
-            <i class="zmdi zmdi-chevron-up"></i>
-        </span>
-    </div> --}}
-
-</div>
-{{else}}
-<div class="container mt-5 pt-5">
-    <center class="mt-5 pt-5">
-
-        <img src="https://img.freepik.com/free-vector/empty-concept-illustration_114360-1188.jpg?w=740&t=st=1660565499~exp=1660566099~hmac=22a7d3716ed550bad50fe4d25b05e9278e219ced664d9633d89efbfc9569e35b"
-            alt="" style="width:300px"><br>
-
-        <h5 style="color: green;"> WISHLIST IS EMPTY</h5>
-
-        <a class="btn btn-succes" href="/showproducts" style="margin-top: 17px; color: green; border: solid green;">SHOP
-            NOW
-        </a>
-    </center>
-</div>
-{{/if}}
+                })
 
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-
-
-    function addToCart(proId) {
-
-        alert(proId)
-
-        $.ajax({
-            url: '/addToCart/' + proId,
-            method: 'get',
-            success: (response) => {
-
-                if (response.status) {
-
-                    let count = $('#cartCount').html()
-                    Swal.fire(
-                        'Added to cart!',
-                        
-                    )
-
-                    count = parseInt(count) + 1
-                    $('#cartCount').load(location.href + " #cartCount")
-
-                }
+            }</script>
 
 
 
+        <script>
 
+
+            function remove(wishId, productId) {
+                console.log(productId)
+                console.log(wishId)
+                $.ajax({
+                    url: '/removeFromWishList',
+                    data: {
+                        wishId: wishId,
+                        productId: productId
+                    },
+                    method: 'post',
+                    success: (response) => {
+
+                        if (response.productRemoved) {
+
+
+
+                            let count = $('#wishcount').html()
+                            Swal.fire(
+
+                                'Removed from wishlist!'
+
+                            )
+
+                            count = parseInt(count) + 1
+
+                            alert('product removed')
+                            $("#reload-section").load(location.href + " #reload-section")
+                        }
+                        else {
+                            alert('false')
+                        }
+                    },
+                    error: (response) => {
+                        alert('err')
+                    }
+                })
             }
 
-        })
-
-
-    }</script>
-
-
-
-<script>
-
-
-    function remove(wishId, productId) {
-        console.log(productId)
-        console.log(wishId)
-        $.ajax({
-            url: '/removeFromWishList',
-            data: {
-                wishId: wishId,
-                productId: productId
-            },
-            method: 'post',
-            success: (response) => {
-
-                if (response.productRemoved) {
-
-
-
-                    let count = $('#wishcount').html()
-                    Swal.fire(
-                        'Good job!',
-                        'You clicked the button!',
-                        'success'
-                    )
-
-                    count = parseInt(count) + 1
-
-                    alert('product removed')
-                    $("#reload-section").load(location.href + " #reload-section")
-                }
-                else {
-                    alert('false')
-                }
-            },
-            error: (response) => {
-                alert('err')
-            }
-        })
-    }
-
-</script>
+        </script>

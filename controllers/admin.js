@@ -653,12 +653,33 @@ module.exports = {
 
     },
 
+
+    viewAllOrders: async(req,res,next)=>{
+     
+
+ 
+        let allOrders = await adminhelpers.AllOrders()
+        allOrders.forEach(element => {
+            element.date = moment(element.date).format("DD-MM-YYYY,h:mm:ss A")
+        });
+  
+        console.log("this is all orders u needed");
+  
+        console.log(allOrders);
+  
+        res.render('admin/viewAllOrders',{layout:'admin-layout',allOrders})
+  
+      },
+  
+
     error: (req, res, next) => {
 
         res.render('admin/error', { layout: 'admin-layout' })
 
-    }
+    },
 
+
+ 
 
 
 }

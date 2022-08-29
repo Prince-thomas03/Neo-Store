@@ -1,9 +1,10 @@
+{{#if cartCount}}
 <div id="reload-section">
 
 	<!-- breadcrumb -->
 	<div class="container pt-5">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="/" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
@@ -178,8 +179,8 @@
 		</div>
 	</form>
 </div>
-
-{{!-- <div class="container mt-5 pt-5">
+{{else}}
+<div class="container mt-5 pt-5">
 	<center class="mt-5 pt-5">
 
 		<img src="https://img.freepik.com/free-vector/add-cart-concept-illustration_114360-1435.jpg?w=740&t=st=1660565422~exp=1660566022~hmac=4d11486ac39f71f5286f2ad5c8aab1f7c1478c6053ed8250d25da269c273fb4b"
@@ -191,8 +192,8 @@
 			ADD TO CART
 		</a>
 	</center>
-</div> --}}
-
+</div>
+{{/if}}
 
 <script>
 
