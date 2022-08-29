@@ -1,0 +1,49 @@
+<div class="container pt-4 px-4">
+    <div class="row g-4">
+
+        <div class="col-sm-12 ">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Edit Banner</h6>
+                <form action="/admin/editbanners/{{banners._id}}" method="post"  enctype="multipart/form-data" class="form-horizontal">
+
+                <p>{{banners._id}}</p>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="name"  value="{{banners.name}}" placeholder="NAME">
+                       
+                    </div>
+
+                   
+                       <img src="/multerImage/{{banners.image.[0]}}" style="width: 100px;"  id="imgView1">
+                    <img src="/multerImage/{{banners.image.[1]}}" style="width: 100px;"  id="imgView2">
+                    <img src="/multerImage/{{banners.image.[2]}}" style="width: 100px;"  id="imgView3">
+
+                         <div class="mb-3">
+                    <label>Choose images</label>
+                    <input name="image" type="file" class="form-control" onchange="viewImage1(event)" multiple >
+                </div>
+
+                    <button type="submit" class="btn btn-success">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+function viewImage1(event)=>{
+
+document.getElementById('imgView1').src=URL.createObjectURL(event.target.files[0])
+document.getElementById('imgView2').src=URL.createObjectURL(event.target.files[1])
+document.getElementById('imgView3').src=URL.createObjectURL(event.target.files[2])
+
+
+}
+
+
+</script>
+

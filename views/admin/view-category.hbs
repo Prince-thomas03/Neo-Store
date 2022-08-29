@@ -1,0 +1,73 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+
+        <div class="col-12">
+            <div class="card-header">
+
+                <a href="/admin/addcategory" <button type="submit" class="btn btn-dark ml-3"
+                    style="border-color: rgb(240, 245, 245);">Add Category </button></a>
+            </div>
+
+        </div>
+        <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">Categories</h6>
+            <div class="table-responsive">
+                <table class="table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Index</th>
+
+                            <th scope="col">Category</th>
+
+                            <th scope="col">images</th>
+
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each category}}
+                        <tr>
+                            <td scope="row">{{ inc @index }}</td>
+                            <td>{{ this.name }}</td>
+
+                            <td><img src="/multerImage/{{this.images.[0]}}" style="width: 30px;" id="imgView1"></td>
+
+
+
+                            {{!-- <td>{{ this.category }}</td> --}}
+
+                            <td>
+                                <a href="/admin/editcategory/{{ this._id }}" class="btn btn-primary"
+                                    onclick="return confirm('Do you want to Edit {{ this.name }} ?')"
+                                    class="btn btn-danger" class="btn btn-danger">Edit</a>
+                            </td>
+                            <td>
+                                <a href="/admin/deletecategory/?id={{ this._id }}" class="btn btn-danger"
+                                    onclick="return confirm('Do you want to delete {{ this.name }} ?')"
+                                    class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+
+
+        $('#usersTable').wrap('<div id="hide" style="display:none"/>');
+
+        $('#hide').css('display', 'block');
+    });
+
+
+    var table = $('#usersTable').DataTable();
+</script>

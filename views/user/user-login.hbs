@@ -1,0 +1,68 @@
+<section class="vh-100 " style="background-image: url('/images/black-friday-shopping-bag-yellow-copy-space-background.jpg'); background-repeat: no-repeat;  background-attachment: fixed; background-size: 100% 100%;">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100 ">
+            <div class="row d-flex  align-items-center h-100 ">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+
+                    <div class="card-body p-5 bg-dark mt-5 " style="border-radius: 15px; max-width: 400px;">
+                        <h2 class="text-uppercase text-center mb-5">Login</h2>
+                        {{#if userError}}
+                            <p class="text-danger">
+                                <b>{{ userError }}</b>
+                            </p>
+                        {{/if}}
+
+                        {{#if noUser}}
+                            <p class="text-danger">
+                                <b>{{ noUser }}</b>
+                            </p>
+                        {{/if}}
+
+                        {{#if userBlock}}
+
+                            <p class="text-danger">
+                                <b>{{ userBlock }}</b>
+                            </p>
+
+                        {{/if}}
+
+
+                        <form id="form" action="/login" method="post">
+
+
+                            <div class="form-outline mb-4">
+                                <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Email"/>
+
+                            </div>
+
+
+                            <div class="form-outline mb-4">
+                                <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Password"/>
+
+                            </div>
+
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn  btn-block btn-lg gradient-custom-4 text-body" style="background-color: #fbba4e;">Login</button>
+
+                            </div>
+
+                            <p class="pt-3">
+                                <a class=" forget text-decoration-none text-white" href="/forgetPassword">forget password ?</a>
+                            </p>
+
+                            <p class="text-center text-muted mt-5 mb-0">Don't have  an account?
+                                <a href="/signup" class="fw-bold text-body">
+                                    <u class="btn btn-dark">signup</u>
+                                </a>
+                            </p>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,129 @@
+{{!-- <style>
+    .img {
+        border-radius: 8px;
+    }
+</style> --}}
+
+<div style="margin-top: 8em;">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-4 pb-5">
+                <!-- Account Sidebar-->
+                <div class="author-card pb-3 border border-secondary">
+                    <div class="author-card-cover"
+                        style="background-image: url(/multerImage/{{user.image.[1]}});">
+                        <a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title=""
+                            data-original-title="You currently have 290 Reward points to spend">
+                    </div>
+                    <div class="author-card-profile  ">
+                        <div class="author-card-avatar"><img class="img-fluid" id="img"
+                                src="/multerImage/{{user.image.[0]}}" alt="{{user.name}}" alt="Responsive image">
+                        </div>
+                        <div class="author-card-details mt-5 ">
+                            <h5 class="author-card-name text-lg">{{user.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard">
+                    <nav class="list-group list-group-flush">
+                        <a class="list-group-item" href="/view-order-products/{{orders._id}}">
+                            {{!-- <div class="d-flex justify-content-between align-items-center">
+                                <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                                    <div class="d-inline-block font-weight-medium text-uppercase">Orders List</div>
+                                </div><span class="badge badge-secondary">{{orderCount}}</span>
+                            </div> --}}
+                        </a><a class="list-group-item active" href="#"><i class="fe-icon-user text-muted"></i>Profile
+                            Settings</a><a class="list-group-item" href="#"><i
+                                class="fe-icon-map-pin text-muted"></i>Addresses</a>
+                        {{!-- <a class="list-group-item"
+                            href="https://www.bootdey.com/snippets/view/bs4-wishlist-profile-page" target="__blank">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div><i class="fe-icon-heart mr-1 text-muted"></i>
+                                    <div class="d-inline-block font-weight-medium text-uppercase">My Wishlist</div>
+                                </div><span class="badge badge-secondary">{{wishCount}}</span>
+                            </div>
+                        </a> --}}
+                        {{!-- <a class="list-group-item"
+                            href="https://www.bootdey.com/snippets/view/bs4-account-tickets" target="__blank">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div><i class="fe-icon-tag mr-1 text-muted"></i>
+                                    <div class="d-inline-block font-weight-medium text-uppercase">My Tickets</div>
+                                </div><span class="badge badge-secondary">4</span>
+                            </div>
+                        </a> --}}
+                    </nav>
+                </div>
+            </div>
+            <!-- Profile Settings-->
+            <div class="col-lg-8 pb-5">
+                <form action="/updateProfile" method="post" enctype="multipart/form-data" class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-fn">Full Name</label>
+                            <input class="form-control" name="name" type="text" id="account-fn" value="{{user.name}}"
+                                required="">
+                        </div>
+                    </div>
+                    {{!-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-ln">Last Name</label>
+                            <input class="form-control" type="text" id="account-ln" value="Adams" required="">
+                        </div>
+                    </div> --}}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-email">E-mail Address</label>
+                            <input class="form-control" name="email" type="email" id="account-email"
+                                value="{{user.email}}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-phone">Phone Number</label>
+                            <input class="form-control" name="mobile" type="text" id="account-phone"
+                                value="{{user.mobile}}" required="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-pass">New Password</label>
+                            <input class="form-control" name="password" type="password" id="account-pass">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-confirm-pass">Confirm Password</label>
+                            <input class="form-control" name="c_password" type="password" id="account-confirm-pass">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-confirm-pass">Image</label>
+                            <input class="form-control" type="file" name="image" id="account-confirm-pass">
+                        </div>
+                    </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="account-confirm-pass">Image Gif</label>
+                            <input class="form-control" type="file" name="image" id="account-confirm-pass">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr class="mt-2 mb-3">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center">
+                            {{!-- <div class="custom-control custom-checkbox d-block">
+                                <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
+                                <label class="custom-control-label" for="subscribe_me">Subscribe me to
+                                    Newsletter</label>
+                            </div> --}}
+                            <button class="btn btn-style-1 btn-primary" type="submit" data-toast=""
+                                data-toast-position="topRight" data-toast-type="success"
+                                data-toast-icon="fe-icon-check-circle" data-toast-title="Success!"
+                                data-toast-message="Your profile updated successfuly.">Update Profile</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div style="margin: 20px;">
+    <div style="margin-top: 110px;">
+        <table class="table" id="table_id">
+
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">DATE</th>
+                    <th scope="col">MOBILE</th>
+                    <th scope="col">AMOUNT</th>
+                    <th scope="col">PAYMENT</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col">ACTION</th>
+                    <th scope="col">VIEW</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each userOrders}}
+                <tr>
+                    <th scope="row">{{ inc @index}}</th>
+                    <td>{{this.date}}</td>
+                    <td>{{this.deliveryDetails.Phone}}</td>
+                    <td>{{this.totalAmount}}</td>
+                    <td>{{this.PaymentMethod}}</td>
+                    <td>{{this.status}}</td>
+                    <td>
+                        {{#if cancelled}}
+                        <p>cancelled</p>
+                        {{else}}
+                        <select class="bg-dark text-white" name="forma" onchange="location = this.value;">
+                            <option>status</option>
+                            <option value="/admin/status-shipped?id={{this._id}}&userId={{this.userId}}">shipped
+                            </option>
+                            <option value="/admin/status-outfordelivery?id={{this._id}}&userId={{this.userId}}">out for
+                                delivery</option>
+                            <option value="/admin/status-delivered?id={{this._id}}&userId={{this.userId}}">delivered
+                            </option>
+                            <option value="/admin/status-cancelled?id={{this._id}}&userId={{this.userId}}">cancel
+                            </option>
+
+
+                            {{/if}}
+                        </select>
+
+                    </td>
+
+
+                    <td><a href="/admin/viewUserProducts/{{this._id}}" class="btn btn-primary">Product details</a></td>
+
+
+
+                    {{!-- <td> <a class="btn btn-danger" href="/cancel-order/?id={{this._id}}"
+                            onclick="return confirm ('are you want to cancel your order?')">cancel
+                        </a></td> --}}
+
+
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{{!--
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script> --}}

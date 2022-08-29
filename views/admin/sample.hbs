@@ -1,0 +1,96 @@
+<p>hi iam prince</p>
+<div id="right-panel" class="right-panel d-flex justify-content-center align-items-center mt-3 bg-dark">
+
+    <div class="col-lg-12 mt-4  ">
+        <div class="card ml-2">
+            <div class="card-header">
+                <strong>Add Product</strong>
+                Elements
+            </div>
+            <div class="card-body card-block">
+                {{!-- /////FORM --}}
+
+                <form action="/admin/saveproduct" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="" class=" form-control-label">Name</label>
+                        </div>
+                        <div class="col-12 col-md-9"><input type="text" id="" name="name" placeholder="Product Name" class="form-control w-50"></div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="" class=" form-control-label">price</label>
+                        </div>
+                        <div class="col-12 col-md-9"><input type="number" id="" name="price" placeholder="Product Price" class="form-control w-50"></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="select" class=" form-control-label">Brand</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="brand" id="select" class="form-control w-50">
+                                <option value="0">Please select</option>
+                                <option value="1">Option #1</option>
+                                <option value="2">Option #2</option>
+                                <option value="3">Option #3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="" class=" form-control-label">Description</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="description" id="textarea-input" rows="3" placeholder="Content..." class="form-control w-50"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="selectSm" class=" form-control-label">category</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="category" id="selectSm" class="form-control-sm form-control w-50">
+                                <option value="0">Please select</option>
+                                <option value="1">Option #1</option>
+                                <option value="2">Option #2</option>
+                                <option value="3">Option #3</option>
+                                <option value="4">Option #4</option>
+                                <option value="5">Option #5</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="file-multiple-    input" class=" form-control-label">File input2</label>
+                        </div>
+                        <div class="col-12 col-md-9"><input type="file" id="file-input" name="image" multiple="" class="form-control-file" multiple></div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3"></div>
+
+                        <button type="submit" class="btn btn-success ml-3">
+                            Add product
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+
+
+                <button type="submit" class="btn btn-success">
+                    Submit
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

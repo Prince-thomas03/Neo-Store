@@ -1,0 +1,42 @@
+<div class="container pt-4 px-4">
+    <div class="row g-4">
+
+        <div class="col-sm-12 ">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Edit Category</h6>
+                <form action="/admin/editcategory/{{getEdit._id}}" method="post"  enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="name"  value="{{getEdit.name}}"  oninput="this.value = this.value.toUpperCase()" placeholder="NAME">
+                        {{!-- <label for="floatingInput">category</label> --}}
+                    </div>
+
+                       <img src="/multerImage/{{getEdit.images.[0]}}" style="width: 50px;"  id="imgView1">
+
+                         <div class="mb-3">
+                    <label>Choose images</label>
+                    <input name="image" type="file" class="form-control" onchange="viewImage1(event)" multiple >
+                </div>
+
+                    <button type="submit" class="btn btn-success">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+function viewImage1(event)=>{
+
+document.getElementById('imgView1').src=URL.createObjectURL(event.target.files[0])
+
+
+}
+
+
+</script>
+

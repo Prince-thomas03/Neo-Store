@@ -1,0 +1,29 @@
+<div class="container pt-4 px-4">
+    <div class="row g-4">
+
+        <div class="col-sm-12 ">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Add Category</h6>
+                <form action="/admin/postcategory" method="post" class="form-horizontal" enctype="multipart/form-data">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" oninput="this.value = this.value.toUpperCase()" name="name" placeholder="NAME">
+                        {{#if error}}
+                        <p class="text-danger">{{error}}</p>
+                        {{/if}}
+                        <label for="floatingInput">category</label>
+                    </div>
+
+                     <div class="mb-3 mt-3">
+                        <label for="formFileMultiple" class="form-label">Images</label>
+                        <input class="form-control bg-dark" type="file" name="image" >
+                    </div>
+
+                    <button type="submit" class="btn btn-success">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
