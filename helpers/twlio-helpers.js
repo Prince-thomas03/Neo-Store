@@ -9,8 +9,14 @@
 //              .create({to: '+919048086615', channel: 'sms'})
 //              .then(verification => console.log(verification.sid));
 
-const client = require('twilio')('AC17364b1d277377a526874013f506379b','cd5eca6299421177907721e20d8c1141');
-const serviceSid='VAc2d65a8e23ea5d72dee42c4c9feffc12'
+require('dotenv').config()
+
+const accountId=process.env.TWILIO_ACCOUNT_ID
+const serviceId=process.env.TWILIO_SERVICE_ID
+const token=process.env.TWILIO_AUTHTOKEN
+
+const client = require('twilio')(accountId,token);
+const serviceSid=serviceId
 
              module.exports={
                 dosms:(noData)=>{

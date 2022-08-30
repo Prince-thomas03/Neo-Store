@@ -19,14 +19,14 @@
 
 						{{user.name}}
 					</a>
-
-				
-
 					<a href="/myprofile" class="flex-c-m trans-04 p-lr-25">
 						Dashboard<i class="fa-solid fa-circle-info"></i>
 					</a>
 
-	{{/if}}
+					{{/if}}
+
+
+
 					{{!-- <a href="#" class="flex-c-m trans-04 p-lr-25">
 						{{#when user.name 'eq' 'koobrin k'}}
 						<p>asdfghjklsdfghjkdfghj</p>
@@ -191,9 +191,10 @@
 				</div>
 			</a>
 			{{/if}}
-{{#if user}}
+			{{#if user}}
 			<a href="/getwishlist"
-				class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="{{wishCount}}">
+				class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+				data-notify="{{wishCount}}">
 				<i class="zmdi zmdi-favorite-outline"></i>
 			</a>
 			{{else}}

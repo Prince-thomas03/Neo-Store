@@ -311,27 +311,19 @@ module.exports = {
         try {
             let proId = req.params.id
 
-            // console.log(proId +"77777777777777777777777777777777");
-
             userhelpers.getOneProduct(proId).then((product) => {
-                // console.log(product +"66666666666666666666666666666666666666666");
 
                 adminhelpers.displayproduct().then(async (products) => {
 
                     if (req.session.isloggedin) {
                         let user = req.session.user
-                        // let cartProducts= await userhelpers.getCartItems(req.session.user._id)
+
                         cartCount = await userhelpers.getCartCount(req.session.user._id)
                         wishCount = await userhelpers.getWishlistCount(req.session.user._id)
 
 
                         let cart = await userhelpers.getCartItems(req.session.user._id)
 
-
-                        console.log("****************************************");
-
-                        console.log(cart);
-console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                         let total = await userhelpers.getTotalAmount(req.session.user._id)
 
                         res.render('user/products-detail', { user, layout: 'user-layout', product, products, cartCount, wishCount, cart, total })
@@ -342,11 +334,6 @@ console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                         res.render('user/products-detail', { Guest: true, layout: 'user-layout', product, products })
 
                     }
-
-                    // console.log(products +"11111111111111111111111111111111111111111111");
-
-
-
 
                 })
             })
@@ -383,10 +370,10 @@ console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
             // console.log(user );
             cartCount = await userhelpers.getCartCount(req.session.user._id)
+            wishCount = await userhelpers.getWishlistCount(req.session.user._id)
 
 
-
-            res.render('user/shoping-cart', { layout: 'user-layout', user, cartProducts, cartCount, total })
+            res.render('user/shoping-cart', { layout: 'user-layout', user, cartProducts, cartCount, total ,wishCount})
 
         } catch (error) {
 
@@ -446,10 +433,6 @@ console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                     res.render('user/products', { layout: 'user-layout', products, productUser: true })
 
                 })
-
-
-
-
 
             }
         } catch (error) {
@@ -633,13 +616,15 @@ console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
     //orderstatus
 
-    orderStatus: (req, res, next) => {
+    orderStatus: async(req, res, next) => {
 
         try {
-
+            cartCount = await userhelpers.getCartCount(req.session.user._id)
+           
+            wishCount = await userhelpers.getWishlistCount(req.session.user._id)
             let user = req.session.user
 
-            res.render('user/orderStatus', { layout: 'user-layout', user })
+            res.render('user/orderStatus', { layout: 'user-layout', user,wishCount, cartCount})
 
         } catch (error) {
             console.log(error);
@@ -696,17 +681,6 @@ console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
             console.log(orderId);
             let orderProduct = await userhelpers.getOrderProducts(orderId)
-
-            // let orderDetails= await userhelpers.userOrderDetails(req.session.user._id)
-
-            console.log("this is what in userproductsorderdetails777777777777777777777777777777777777777777777777777777777777777777777777777");
-
-            console.log(orderProduct);
-
-
-            // console.log("this is what in ordersDetails666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666");
-            // console.log(orderDetails);
-
             res.render('user/vieworderedproducts', { layout: 'user-layout', orderProduct, user })
 
         } catch (error) {
@@ -724,13 +698,12 @@ console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
     verifyPayment: (req, res, next) => {
-        try {
-            console.log("verifypayment");
-            console.log(req.body);
 
+   try {
+            
             userhelpers.verifyPayment(req.body).then(() => {
 
-                userhelpers.changePaymentStatus(req.body['order[receipt]']).then(() => {
+                userhelpers.changePaymentStatus(req.body['order[receipt]'],req.session.user._id).then(() => {
 
                     res.json({ status: true })
 
@@ -826,8 +799,6 @@ console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
             orderId = req.params.id
 
             console.log(orderId);
-
-
 
             userhelpers.cancelOrder(orderId).then(() => {
 
