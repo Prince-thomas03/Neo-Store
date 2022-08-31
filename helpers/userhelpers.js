@@ -7,7 +7,7 @@ const { response } = require('express');
 const Razorpay = require('razorpay');
 const { log } = require('console');
 const { resolve } = require('path');
-require('dotenv').config({ path: require('find-config')('.env') })
+require('dotenv').config({path:'/.env'})
 const instance = new Razorpay({
     key_id: process.env.RAZORPAY_KEY,
     key_secret: process.env.RAZORPAY_SCRETKEY,

@@ -9,7 +9,7 @@
 //              .create({to: '+919048086615', channel: 'sms'})
 //              .then(verification => console.log(verification.sid));
 
-require('dotenv').config({ path: require('find-config')('.env') })
+require('dotenv').config({path:'/.env'})
 
 const accountId=process.env.TWILIO_ACCOUNT_ID
 const serviceId=process.env.TWILIO_SERVICE_ID
