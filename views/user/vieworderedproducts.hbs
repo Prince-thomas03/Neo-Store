@@ -315,11 +315,11 @@
                         </figcaption>
                     </figure>
                 </li>
-       
+
                 {{/each}}
-                
-                       
-                
+
+
+
 
 
                 <div class="row mt-3 mx-3 " style="margin-top:25px ;">
@@ -365,19 +365,19 @@
                                                 <label class="form-label">Date :{{orderProduct.[0].date}}</label>
                                             </div>
                                             <hr> --}}
-                                                      <h4 style="color: #495057 ;"><strong>Delivery Address</strong></h4>
+                                            <h4 style="color: #495057 ;"><strong>Delivery Address</strong></h4>
                                             <div class="form-outline">
 
                                                 <label class="form-label">Name :
                                                     {{orderProduct.[0].deliveryDetails.First_Name}}</label><br>
                                                 <label class="form-label">Address
-                                                    :{{orderProduct.[0].deliveryDetails.Company_Name}}</label><br>
+                                                    :{{orderProduct.[0].deliveryDetails.Address}}</label><br>
                                                 <label class="form-label">pincode
                                                     :{{orderProduct.[0].deliveryDetails.Post_Code}}</label><br>
                                                 <label class="form-label">city
-                                                    :{{orderProduct.[0].deliveryDetails.Town_City}}</label><br>
+                                                    :{{orderProduct.[0].deliveryDetails.City}}</label><br>
                                                 <label class="form-label">state
-                                                    :{{orderProduct.[0].deliveryDetails.Country_State}}</label><br>
+                                                    :{{orderProduct.[0].deliveryDetails.State}}</label><br>
                                                 <label class="form-label">Date :{{orderProduct.[0].date}}</label>
                                             </div>
                                         </div>
@@ -401,4 +401,3 @@
         </div>
     </article>
 </div>
- 

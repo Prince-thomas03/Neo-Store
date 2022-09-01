@@ -13,11 +13,10 @@
 
 
 					{{#if user}}
-					<a href="/editprofile" class="flex-c-m trans-04 p-lr-25 "><img src="/multerImage/{{user.image.[0]}}"
-							style="width: 2em; height:2em;border-radius: 100%; word-spacing: 30px;" alt="">
+					<a href="/editprofile" class="flex-c-m trans-04 p-lr-25 ">
 						{{!-- <i class="fa-solid fa-user"></i> --}}
 
-						{{user.name}}
+						<span><strong>{{user.name}}</strong></span>
 					</a>
 					<a href="/myprofile" class="flex-c-m trans-04 p-lr-25">
 						Dashboard<i class="fa-solid fa-circle-info"></i>
