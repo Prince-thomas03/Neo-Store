@@ -189,10 +189,10 @@ module.exports = {
 
     getOneProduct: (proId) => {
 
-        return new Promise((resolve, reject) => {
+        return new Promise(async(resolve, reject) => {
 
             try {
-                db.get().collection(collection.productCollection).findOne({ _id: ObjectId(proId) }).then((response) => {
+              await  db.get().collection(collection.productCollection).findOne({ _id: ObjectId(proId) }).then((response) => {
 
                     resolve(response)
 
@@ -201,6 +201,8 @@ module.exports = {
             } catch (error) {
                 console.log(error);
                 reject(error)
+
+                console.log("rejected");
 
             }
 
@@ -592,6 +594,7 @@ module.exports = {
                 resolve(userOrder)
 
             } catch (error) {
+                console.log(("999999999999999999999999999999999999999999"));
                 console.log(error);
                 reject(error)
 

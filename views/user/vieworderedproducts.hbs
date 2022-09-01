@@ -159,14 +159,14 @@
             <h6>Order ID:{{ orderProduct.[0]._id}}</h6>
             <article class="card">
                 <div class="card-body row">
-                    <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2019 </div>
+                    {{!-- <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2019 </div> --}}
                     <div class="col"> <strong>Shipping BY:</strong> <br> BLUEDART, | <i class="fa fa-phone"></i>
                         +1598675986 </div>
 
                     <div class="col"> <strong>Status:{{orderProduct.[0].status}}</strong> <br>
                     </div>
-                    <div class="col"> <strong>Tracking #:</strong> <br> BD045903594059 </div>
-                    {{#when orderProduct.[0].status 'eq' 'Delivered'}}
+                    <div class="col"> <strong>Tracking #:</strong> <br> {{orderProduct.[0]._id}}</div>
+
                     <div class="col">
                         <a class="btn btn-md" href="/invoice/{{orderProduct.0._id}}"
                             class="text-decoration-none invoice-link text-primary">View Invoice</a>
@@ -182,7 +182,7 @@
 
 
                     </div>
-                    {{/when}}
+
                 </div>
             </article>
             <div class="track">
@@ -251,7 +251,7 @@
                 {{/when}}
 
 
-                {{#when orderProduct.[0].status 'eq' 'delivered'}}
+                {{#when orderProduct.[0].status 'eq' 'Delivered'}}
 
                 <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                         class="text">pending</span> </div>
@@ -271,18 +271,19 @@
 
                 {{#when orderProduct.[0].status 'eq' 'cancelled'}}
 
-                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
+                <div class="step  "> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                         class="text">pending</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
+                <div class="step  "> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                         class="text">placed</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
+                <div class="step  "> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                         class="text">shipped</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">
+                <div class="step "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">
                         out for delivery</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">
+                <div class="step  "> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">
                         delivered
                     </span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">
+                <div class="step text-danger"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
+                        class="text">
                         cancelled
                     </span> </div>
 
@@ -373,7 +374,7 @@
                                                 <label class="form-label">Address
                                                     :{{orderProduct.[0].deliveryDetails.Address}}</label><br>
                                                 <label class="form-label">pincode
-                                                    :{{orderProduct.[0].deliveryDetails.Post_Code}}</label><br>
+                                                    :{{orderProduct.[0].deliveryDetails.Code}}</label><br>
                                                 <label class="form-label">city
                                                     :{{orderProduct.[0].deliveryDetails.City}}</label><br>
                                                 <label class="form-label">state

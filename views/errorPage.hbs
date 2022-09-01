@@ -102,7 +102,12 @@ svg {
   <div class="buttons-con">
     <div class="action-link-wrap">
       <a onclick="history.back(-1)" class="link-button link-back-button ">Go Back</a>
-      <a href="/" class="link-button">Go to Home Page</a>
+      {{#if u}}
+  <a href="/admin" class="link-button">Go to Home Page</a>
+      {{else}}
+       
+       <a href="/" class="link-button">Go to Home Page</a>
+      {{/if}}
     </div>
   </div>
 </div>

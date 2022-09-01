@@ -99,7 +99,7 @@ module.exports = {
 
     return new Promise(async (resolve, reject) => {
 
-      let users = await db.get().collection(collection.userCollections).find().toArray()
+      let users = await db.get().collection(collection.userCollections).find().sort({_id:-1}).toArray()
       resolve(users)
 
     })
@@ -517,98 +517,6 @@ module.exports = {
 
 
 
-  // getrecentOrders: () => {
-  //     return new Promise(async (resolve, reject) => {
-  //         let orders = await db.get().collection(collection.orderCollection).find().toArray()
-  //         resolve(orders.reverse())
-  //     })
-  // },
-
-
-
-  // getRevenue: () => {
-  //     return new Promise(async (resolve, reject) => {
-  //         let deliveredRevenue = await db.get().collection(collection.orderCollection).aggregate([
-
-  //             {
-  //                 $match: { "status": "Delivered" }
-  //             },
-
-  //             {
-  //                 $group: {
-  //                     _id: null,
-  //                     total: { $sum: '$orderData.Total_Amount' }
-  //                 }
-  //             }
-
-  //         ]).toArray()
-
-  //         deliveredRevenue = deliveredRevenue[0] ? deliveredRevenue[0].total : 0
-
-  //         let discountRevenue = await db.get().collection(collection.orderCollection).aggregate([
-  //             {
-  //                 $match: { "status": "Delivered" }
-  //             },
-
-  //             {
-  //                 $group: {
-  //                     _id: null,
-  //                     total: { $sum: "$orderData.discountData.discount" }
-  //                 }
-  //             }
-  //         ]).toArray()
-  //         discountRevenue = discountRevenue[0] ? discountRevenue[0].total : 0
-
-  //         let totalRevenue = deliveredRevenue - discountRevenue
-
-  //         resolve(totalRevenue)
-  //     })
-  // },
-
-
-  // getActiveUsers: () => {
-  //     return new Promise(async (resolve, reject) => {
-  //         let users = await db.get().collection(collection.userCollections).count({ block: false })
-  //         resolve(users)
-  //         console.log("99999999999999999999999999999999999999");
-  //         console.log(users);
-  //     })
-  // },
-
-
-  // getOrderStatus: () => {
-
-  //     return new Promise(async (resolve, reject) => {
-  //         let delivered = await db.get().collection(collection.orderCollection).count({ status: "Delivered" })
-  //         let packed = await db.get().collection(collection.orderCollection).count({ status: "Packed" })
-  //         let shipped = await db.get().collection(collection.orderCollection).count({ status: "shipped" })
-  //         let cancelled = await db.get().collection(collection.orderCollection).count({ status: "Cancelled" })
-
-  //         statusData = {
-  //             delivered: delivered,
-  //             packed: packed,
-  //             shipped: shipped,
-  //             cancelled: cancelled,
-  //         }
-  //         resolve(statusData)
-  //     })
-  // },
-
-
-  // getPayMethod: () => {
-  //     return new Promise(async (resolve, reject) => {
-  //         let cod = await db.get().collection(collection.orderCollection).count({ Pay_Method: "COD" })
-  //         let razorPay = await db.get().collection(collection.orderCollection).count({ Pay_Method: "Razorpay" })
-
-  //         let payData = {
-  //             cod: cod,
-  //             razorPay: razorPay
-  //         }
-
-  //         resolve(payData)
-  //     })
-  // },
-
 
   onlinePaymentCount: () => {
     return new Promise(async (resolve, reject) => {
@@ -736,13 +644,13 @@ module.exports = {
 
           {
             $project: {
-              'orderData.Total_Amount': 1
+              'totalAmount': 1
             }
           },
           {
             $group: {
               _id: null,
-              sum: { $sum: '$orderData.Total_Amount' }
+              sum: { $sum: '$totalAmount' }
             }
           }
         ]).toArray()
@@ -758,31 +666,41 @@ module.exports = {
 
   viewAllOrders: () => {
 
-    db.get().collection(collection.orderCollection).find().toArray().then((response) => {
+return new Promise((resolve,reject)=>{
+db.get().collection(collection.orderCollection).find().sort({_id:-1}).toArray().then((response) => {
 
-      if (response) {
+    if (response) {
 
-        resolve(response)
-      } else {
+      resolve(response)
+    } else {
 
-        resolve(false)
+      resolve(false)
 
-      }
+    }
 
 
-    })
+  })
 
+
+
+})
   },
+
 
   AllOrders: () => {
 
-    return new Promise(async (resolve, reject) => {
-
-      let allOrders = await db.get().collection(collection.orderCollection).find().toArray()
-
-      resolve(allOrders)
-
-    })
+   try {
+     return new Promise(async (resolve, reject) => {
+ 
+       let allOrders = await db.get().collection(collection.orderCollection).find().sort({_id:-1}).toArray()
+ 
+       resolve(allOrders)
+ 
+     })
+   } catch (error) {
+    
+    reject(error)
+   }
   }
 
 

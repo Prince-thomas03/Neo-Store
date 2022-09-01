@@ -306,14 +306,14 @@ module.exports = {
 
 
 
-    getProduct: (req, res, next) => {
+    getProduct:async (req, res, next) => {
 
         try {
             let proId = req.params.id
 
-            userhelpers.getOneProduct(proId).then((product) => {
+          await  userhelpers.getOneProduct(proId).then(async(product) => {
 
-                adminhelpers.displayproduct().then(async (products) => {
+         await  adminhelpers.displayproduct().then(async (products) => {
 
                     if (req.session.isloggedin) {
                         let user = req.session.user
@@ -338,10 +338,10 @@ module.exports = {
                 })
             })
         } catch (error) {
-
+            next(error)
             console.log(error);
 
-            next(error)
+         
 
         }
 
@@ -653,6 +653,8 @@ module.exports = {
 
             });
 
+           
+
             let user = req.session.user
 
             cartCount = await userhelpers.getCartCount(req.session.user._id)
@@ -681,6 +683,8 @@ module.exports = {
 
             console.log(orderId);
             let orderProduct = await userhelpers.getOrderProducts(orderId)
+            console.log("ufghfhgfdhg");
+            console.log(orderProduct);
             res.render('user/vieworderedproducts', { layout: 'user-layout', orderProduct, user })
 
         } catch (error) {

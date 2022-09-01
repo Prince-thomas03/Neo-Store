@@ -86,6 +86,8 @@ router.get('/status-outfordelivery', verifyLogin, admincontroller.outForDelivery
 
 router.get('/status-cancelled', verifyLogin, admincontroller.statusCancel)
 
+router.get('/allOrders',verifyLogin,admincontroller.viewAllOrders)
+
 //baner Managment
 
 router.get('/view-banner', verifyLogin, admincontroller.viewBaner)
@@ -113,7 +115,7 @@ router.get('/deleteCoupon', verifyLogin, admincontroller.deleteCoupon)
 
 //error
 
-router.get('/*', verifyLogin, admincontroller.error)
+// router.get('/*', verifyLogin, admincontroller.error)
 
 //admin dashboard
 

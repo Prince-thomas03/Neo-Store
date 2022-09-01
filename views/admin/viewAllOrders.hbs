@@ -1,0 +1,77 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h5 class="mb-4">Order List</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="orderTable" style="text-align: center;">
+                        {{!-- <h3>My Orders</h3> --}}
+                        <thead>
+                            <tr class="tr align-items-center">
+                                <th scope="col">NO:</th>
+                                <th scope="col">Name:</th>
+                                {{!-- <th scope="col">Date</th> --}}
+                                
+                                <th scope="col">Address</th>
+                                <th scope="col">Pincode</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Payment</th>
+                                <th scope="col">status</th>
+                                <th scope="col">Product info</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each allOrders}}
+                            <tr class="tr">
+                                <td scope="row">{{inc @index}}</td>
+                                 <td scope="row">{{this.deliveryDetails.First_Name}}</td>
+                                {{!-- <td>{{this.date}}</td> --}}
+                                <td>{{this.deliveryDetails.Address}}</td>
+                                <td>{{this.deliveryDetails.Post_Code}}</td>
+                                <td>{{this.deliveryDetails.Phone}}</td>
+                                <td>₹ {{this.totalAmount}}</td>
+                                <td>{{this.PaymentMethod}}</td>
+
+
+
+
+                                <td>
+                        {{#if cancelled}}
+                        <p>cancelled</p>
+                        {{else}}
+                        <select class="bg-dark text-white" name="forma" onchange="location = this.value;">
+                            <option>status</option>
+                            <option value="/admin/status-shipped?id={{this._id}}&userId={{this.userId}}">shipped
+                            </option>
+                            <option value="/admin/status-outfordelivery?id={{this._id}}&userId={{this.userId}}">out for
+                                delivery</option>
+                            <option value="/admin/status-delivered?id={{this._id}}&userId={{this.userId}}">delivered
+                            </option>
+                            <option value="/admin/status-cancelled?id={{this._id}}&userId={{this.userId}}">cancel
+                            </option>
+
+
+                            {{/if}}
+                        </select>
+
+                    </td>
+
+                                <td><a href="/admin/viewUserProducts/{{this._id}}"><button
+                                            class="text-white btn btn-danger">Products</button></a>
+                                </td>
+
+                            </tr>
+                            {{/each}}
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
